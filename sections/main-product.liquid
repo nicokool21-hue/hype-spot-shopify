@@ -1,0 +1,375 @@
+{% comment %}
+  Premium Product Page - Hype Spot
+  Converted from React ProductDetail component
+{% endcomment %}
+
+<section class="product-page">
+  <div class="product-container">
+    <div class="product-grid">
+      <!-- Product Images -->
+      <div class="product-images">
+        <div class="product-images__main">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | image_url: width: 800 }}" 
+              alt="{{ product.featured_image.alt | escape }}"
+              id="productMainImage"
+            />
+          {% endif %}
+        </div>
+        
+        {% if product.images.size > 1 %}
+          <div class="product-images__thumbnails">
+            {% for image in product.images limit: 4 %}
+              <button 
+                class="product-thumbnail {% if forloop.first %}active{% endif %}"
+                data-image="{{ image | image_url: width: 800 }}"
+                onclick="changeMainImage(this)"
+              >
+                <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}" />
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <p class="product-info__category">{{ product.type | default: 'Producto' }}</p>
+        <h1 class="product-info__title">{{ product.title }}</h1>
+        <p class="product-info__price">{{ product.price | money }}</p>
+
+        {% if product.description != blank %}
+          <div class="product-info__description">
+            {{ product.description }}
+          </div>
+        {% endif %}
+
+        <!-- Add to Cart Form -->
+        <form action="{{ routes.cart_add_url }}" method="post" class="product-form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          {% if product.variants.size > 1 %}
+            <div class="product-variants">
+              <label for="variant-select">Variante:</label>
+              <select name="id" id="variant-select" class="product-select">
+                {% for variant in product.variants %}
+                  <option 
+                    value="{{ variant.id }}"
+                    {% unless variant.available %}disabled{% endunless %}
+                  >
+                    {{ variant.title }} - {{ variant.price | money }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+
+          <div class="product-quantity">
+            <label for="quantity">Cantidad:</label>
+            <div class="quantity-selector">
+              <button type="button" class="qty-btn" onclick="changeQuantity(-1)">-</button>
+              <input type="number" name="quantity" id="quantity" value="1" min="1" readonly>
+              <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="product-add-btn"
+            {% unless product.available %}disabled{% endunless %}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            {% if product.available %}
+              Agregar al carrito
+            {% else %}
+              Agotado
+            {% endif %}
+          </button>
+        </form>
+
+        <!-- Product Features -->
+        <div class="product-features">
+          <h3>Características destacadas</h3>
+          <ul>
+            <li>✓ Envío gratis en pedidos superiores a $500</li>
+            <li>✓ Garantía de calidad premium</li>
+            <li>✓ Devoluciones gratis en 30 días</li>
+            <li>✓ Soporte al cliente 24/7</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-page {
+    padding: 3rem 0;
+    background: #FFFFFF;
+  }
+
+  .product-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .product-images__main {
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #F3F4F6;
+    border: 1px solid #E5E7EB;
+  }
+
+  .product-images__main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-images__thumbnails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .product-thumbnail {
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 2px solid #E5E7EB;
+    background: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .product-thumbnail:hover,
+  .product-thumbnail.active {
+    border-color: #FB923C;
+  }
+
+  .product-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-info__category {
+    font-size: 0.875rem;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-info__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .product-info__price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FB923C;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-info__description {
+    color: #6B7280;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .product-form {
+    margin-bottom: 2rem;
+  }
+
+  .product-variants,
+  .product-quantity {
+    margin-bottom: 1.5rem;
+  }
+
+  .product-variants label,
+  .product-quantity label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background: white;
+  }
+
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+  }
+
+  .qty-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid #E5E7EB;
+    background: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .qty-btn:hover {
+    border-color: #FB923C;
+    color: #FB923C;
+  }
+
+  #quantity {
+    width: 4rem;
+    text-align: center;
+    padding: 0.75rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .product-add-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #111827;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .product-add-btn:hover:not(:disabled) {
+    background: #1F2937;
+    transform: translateY(-2px);
+  }
+
+  .product-add-btn:disabled {
+    background: #9CA3AF;
+    cursor: not-allowed;
+  }
+
+  .product-features {
+    padding: 1.5rem;
+    background: #F9FAFB;
+    border-radius: 0.75rem;
+    border: 1px solid #E5E7EB;
+  }
+
+  .product-features h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .product-features li {
+    padding: 0.5rem 0;
+    color: #6B7280;
+  }
+
+  @media (min-width: 1024px) {
+    .product-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product-info__title {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+
+<script>
+  function changeMainImage(thumbnail) {
+    const mainImage = document.getElementById('productMainImage');
+    const newSrc = thumbnail.dataset.image;
+    mainImage.src = newSrc;
+    
+    document.querySelectorAll('.product-thumbnail').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    thumbnail.classList.add('active');
+  }
+
+  function changeQuantity(change) {
+    const input = document.getElementById('quantity');
+    const currentValue = parseInt(input.value);
+    const newValue = Math.max(1, currentValue + change);
+    input.value = newValue;
+  }
+
+  // Handle form submission
+  document.querySelector('.product-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    
+    fetch('{{ routes.cart_add_url }}', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Update cart count
+      fetch('{{ routes.cart_url }}.js')
+        .then(res => res.json())
+        .then(cart => {
+          const cartCount = document.getElementById('cartCount');
+          if (cartCount) {
+            cartCount.textContent = cart.item_count;
+          }
+        });
+      
+      // Open cart drawer
+      document.dispatchEvent(new CustomEvent('cart:open'));
+      alert('Producto agregado al carrito');
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error al agregar al carrito');
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,414 @@
+{% comment %}
+  Shopping Cart Sidebar Drawer
+  Converted from React ShoppingCart component
+{% endcomment %}
+
+<div id="cartDrawer" class="cart-drawer" style="display: none;">
+  <!-- Backdrop -->
+  <div class="cart-drawer__backdrop" id="cartBackdrop"></div>
+
+  <!-- Cart Panel -->
+  <div class="cart-drawer__panel">
+    <!-- Header -->
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">Carrito de compras</h2>
+      <button class="cart-drawer__close" id="cartClose" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="cart-drawer__items" id="cartItems">
+      <div class="cart-drawer__empty" id="cartEmpty">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <p class="cart-drawer__empty-title">Tu carrito está vacío</p>
+        <p class="cart-drawer__empty-desc">Agrega productos para comenzar</p>
+      </div>
+      <div id="cartItemsList"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="cart-drawer__footer" id="cartFooter" style="display: none;">
+      <div class="cart-drawer__total">
+        <span>Total</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <a href="{{ routes.cart_url }}" class="cart-drawer__checkout">
+        Proceder al pago
+      </a>
+      <p class="cart-drawer__note">
+        Envío e impuestos calculados al finalizar la compra
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cart-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+  }
+
+  .cart-drawer__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .cart-drawer__panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 24rem;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease;
+  }
+
+  .cart-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid #E5E7EB;
+  }
+
+  .cart-drawer__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .cart-drawer__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #111827;
+    transition: opacity 0.2s ease;
+  }
+
+  .cart-drawer__close:hover {
+    opacity: 0.7;
+  }
+
+  .cart-drawer__items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+  }
+
+  .cart-drawer__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: #6B7280;
+  }
+
+  .cart-drawer__empty svg {
+    margin-bottom: 1rem;
+  }
+
+  .cart-drawer__empty-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #111827;
+  }
+
+  .cart-drawer__empty-desc {
+    font-size: 0.875rem;
+  }
+
+  .cart-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #E5E7EB;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .cart-item:hover {
+    border-color: rgba(251, 146, 60, 0.3);
+  }
+
+  .cart-item__image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #F3F4F6;
+    flex-shrink: 0;
+  }
+
+  .cart-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cart-item__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cart-item__title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cart-item__price {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .cart-item__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cart-item__qty-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid #E5E7EB;
+    background: white;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .cart-item__qty-btn:hover {
+    border-color: #FB923C;
+    color: #FB923C;
+  }
+
+  .cart-item__qty {
+    font-size: 0.875rem;
+    font-weight: 500;
+    width: 2rem;
+    text-align: center;
+  }
+
+  .cart-item__remove {
+    width: 1.75rem;
+    height: 1.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #EF4444;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-item__remove:hover {
+    opacity: 0.7;
+  }
+
+  .cart-drawer__footer {
+    border-top: 1px solid #E5E7EB;
+    padding: 1.5rem;
+  }
+
+  .cart-drawer__total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .cart-drawer__checkout {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background: #111827;
+    color: white;
+    text-align: center;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+
+  .cart-drawer__checkout:hover {
+    background: #1F2937;
+  }
+
+  .cart-drawer__note {
+    font-size: 0.75rem;
+    color: #6B7280;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+</style>
+
+<script>
+  // Cart drawer functionality
+  (function() {
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartBackdrop = document.getElementById('cartBackdrop');
+    const cartClose = document.getElementById('cartClose');
+    const cartEmpty = document.getElementById('cartEmpty');
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartFooter = document.getElementById('cartFooter');
+    const cartTotal = document.getElementById('cartTotal');
+
+    function openCart() {
+      cartDrawer.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      loadCart();
+    }
+
+    function closeCart() {
+      cartDrawer.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function loadCart() {
+      fetch('/cart.js')
+        .then(res => res.json())
+        .then(cart => {
+          if (cart.item_count === 0) {
+            cartEmpty.style.display = 'flex';
+            cartItemsList.innerHTML = '';
+            cartFooter.style.display = 'none';
+          } else {
+            cartEmpty.style.display = 'none';
+            cartFooter.style.display = 'block';
+            renderCartItems(cart);
+            cartTotal.textContent = formatMoney(cart.total_price);
+          }
+        });
+    }
+
+    function renderCartItems(cart) {
+      cartItemsList.innerHTML = cart.items.map(item => `
+        <div class="cart-item">
+          <div class="cart-item__image">
+            <img src="${item.image}" alt="${item.title}" />
+          </div>
+          <div class="cart-item__content">
+            <h4 class="cart-item__title">${item.title}</h4>
+            <p class="cart-item__price">${formatMoney(item.price)}</p>
+            <div class="cart-item__controls">
+              <button class="cart-item__qty-btn" data-action="decrease" data-key="${item.key}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+              <span class="cart-item__qty">${item.quantity}</span>
+              <button class="cart-item__qty-btn" data-action="increase" data-key="${item.key}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+              <button class="cart-item__remove" data-action="remove" data-key="${item.key}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Add event listeners
+      document.querySelectorAll('.cart-item__qty-btn, .cart-item__remove').forEach(btn => {
+        btn.addEventListener('click', handleCartAction);
+      });
+    }
+
+    function handleCartAction(e) {
+      const action = e.currentTarget.dataset.action;
+      const key = e.currentTarget.dataset.key;
+
+      if (action === 'remove') {
+        updateCart(key, 0);
+      } else {
+        fetch('/cart.js')
+          .then(res => res.json())
+          .then(cart => {
+            const item = cart.items.find(i => i.key === key);
+            const newQty = action === 'increase' ? item.quantity + 1 : Math.max(1, item.quantity - 1);
+            updateCart(key, newQty);
+          });
+      }
+    }
+
+    function updateCart(key, quantity) {
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: key, quantity })
+      })
+      .then(res => res.json())
+      .then(() => {
+        loadCart();
+        updateCartCount();
+      });
+    }
+
+    function updateCartCount() {
+      fetch('/cart.js')
+        .then(res => res.json())
+        .then(cart => {
+          const cartCount = document.getElementById('cartCount');
+          if (cartCount) {
+            cartCount.textContent = cart.item_count;
+          }
+        });
+    }
+
+    function formatMoney(cents) {
+      return '$' + (cents / 100).toLocaleString('es-MX', { minimumFractionDigits: 2 });
+    }
+
+    // Event listeners
+    document.addEventListener('cart:open', openCart);
+    if (cartBackdrop) cartBackdrop.addEventListener('click', closeCart);
+    if (cartClose) cartClose.addEventListener('click', closeCart);
+  })();
+</script>

@@ -1,0 +1,56 @@
+/* Multicolumn section styles */
+
+.multicolumn {
+  padding: 5rem 0;
+}
+
+.multicolumn-card {
+  text-align: center;
+}
+
+.multicolumn-card__image-wrapper {
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.multicolumn-card__image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.multicolumn-card__info {
+  padding: 0 1rem;
+}
+
+.multicolumn-card__title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.multicolumn-card__text {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: rgba(var(--color-base-text), 0.8);
+  margin-bottom: 1.5rem;
+}
+
+.multicolumn-card__text p {
+  margin: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .multicolumn {
+    padding: 3rem 0;
+  }
+  
+  .multicolumn-card__title {
+    font-size: 1.8rem;
+  }
+  
+  .multicolumn-card__text {
+    font-size: 1.4rem;
+  }
+}

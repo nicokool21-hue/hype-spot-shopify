@@ -1,0 +1,115 @@
+/* Collection product grid styles */
+
+.collection {
+  padding: 2rem 0;
+}
+
+.collection--empty {
+  text-align: center;
+  padding: 8rem 0;
+}
+
+.collection__empty-text {
+  font-size: 2rem;
+  color: rgba(var(--color-base-text), 0.6);
+  margin-bottom: 2rem;
+}
+
+.collection__filters-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(var(--color-base-text), 0.1);
+}
+
+.collection__sorting {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.collection__sorting label {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.select__select {
+  padding: 1rem 3rem 1rem 1.5rem;
+  border: 2px solid rgba(var(--color-base-text), 0.2);
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10 6\"><path d=\"M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z\" fill=\"%23333\"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2rem;
+}
+
+.product-grid {
+  margin-bottom: 4rem;
+}
+
+.pagination-wrapper {
+  margin-top: 4rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination__list {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4rem;
+  height: 4rem;
+  padding: 0 1.5rem;
+  border: 2px solid rgba(var(--color-base-text), 0.2);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.pagination__link:hover {
+  border-color: rgb(var(--color-accent));
+  color: rgb(var(--color-accent));
+}
+
+.pagination__link--active {
+  background: rgb(var(--color-accent));
+  border-color: rgb(var(--color-accent));
+  color: white;
+  cursor: default;
+}
+
+@media screen and (max-width: 749px) {
+  .collection__filters-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+  
+  .collection__sorting {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .select__select {
+    width: 100%;
+  }
+}

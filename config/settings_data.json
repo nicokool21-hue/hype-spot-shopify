@@ -1,0 +1,53 @@
+{
+  "current": {
+    "colors_text": "#121212",
+    "colors_background": "#FFFFFF",
+    "color_accent": "#FB923C",
+    "type_header_font": "assistant_n4",
+    "type_body_font": "assistant_n4",
+    "body_scale": 100,
+    "heading_scale": 100,
+    "page_width": 1200,
+    "card_style": "standard",
+    "show_vendor": false,
+    "show_rating": false,
+    "social_facebook_link": "",
+    "social_instagram_link": "",
+    "social_twitter_link": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu",
+          "logo_width": 120
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Enlaces rápidos",
+              "menu": "footer"
+            }
+          },
+          "footer-1": {
+            "type": "text",
+            "settings": {
+              "heading": "Contáctanos",
+              "subtext": "<p>Email: hypespotclient@gmail.com</p>"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "footer-1"
+        ],
+        "settings": {
+          "enable_country_selector": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,324 @@
+{% comment %}
+  Premium Header Section - Hype Spot
+  Converted from React to Shopify Liquid
+{% endcomment %}
+
+<header class="header sticky-header glass-effect" data-section-id="{{ section.id }}" data-section-type="header">
+  <nav class="header__container">
+    <div class="header__wrapper">
+      <!-- Logo -->
+      <div class="header__left">
+        <a href="/" class="header__logo-link">
+          <div class="header__logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <span class="header__logo-text">
+            Hype <span class="header__logo-accent">Spot</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="header__nav desktop-only">
+          <a href="/collections/tecnologia" class="header__nav-link">Tecnología</a>
+          <a href="/collections/moda" class="header__nav-link">Moda</a>
+          <a href="/collections/accesorios" class="header__nav-link">Accesorios</a>
+        </div>
+      </div>
+
+      <!-- Right Actions -->
+      <div class="header__right">
+        <!-- Search -->
+        <button class="header__icon-btn desktop-only" id="searchToggle" aria-label="Buscar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+
+        <!-- Cart -->
+        <a href="{{ routes.cart_url }}" class="header__icon-btn header__cart" id="cartToggle" aria-label="Carrito">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="header__cart-count" id="cartCount">{{ cart.item_count }}</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="header__icon-btn mobile-only" id="mobileMenuToggle" aria-label="Menú">
+          <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg id="closeIcon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar (expandable) -->
+    <div class="header__search desktop-only" id="searchBar" style="display: none;">
+      <form action="{{ routes.search_url }}" method="get" class="header__search-form">
+        <input
+          type="search"
+          name="q"
+          placeholder="Buscar productos..."
+          class="header__search-input"
+          autofocus
+        />
+      </form>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="header__mobile-menu mobile-only" id="mobileMenu" style="display: none;">
+      <div class="header__mobile-search">
+        <form action="{{ routes.search_url }}" method="get">
+          <input
+            type="search"
+            name="q"
+            placeholder="Buscar productos..."
+            class="header__search-input"
+          />
+        </form>
+      </div>
+      <a href="/collections/tecnologia" class="header__mobile-link">Tecnología</a>
+      <a href="/collections/moda" class="header__mobile-link">Moda</a>
+      <a href="/collections/accesorios" class="header__mobile-link">Accesorios</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .header__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .header__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .header__left,
+  .header__right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .header__logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .header__logo-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.2), rgba(251, 146, 60, 0.1));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    color: #FB923C;
+  }
+
+  .header__logo-link:hover .header__logo-icon {
+    transform: scale(1.1);
+  }
+
+  .header__logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .header__logo-accent {
+    color: #FB923C;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .header__nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6B7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .header__nav-link:hover {
+    color: #111827;
+  }
+
+  .header__right {
+    gap: 0.5rem;
+  }
+
+  .header__icon-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #111827;
+    transition: opacity 0.2s ease;
+    position: relative;
+  }
+
+  .header__icon-btn:hover {
+    opacity: 0.7;
+  }
+
+  .header__cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #FB923C;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__search,
+  .header__mobile-menu {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(229, 231, 235, 0.5);
+    animation: slideDown 0.3s ease;
+  }
+
+  .header__search-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .header__mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header__mobile-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .header__mobile-link:hover {
+    color: #FB923C;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .desktop-only {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-only {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Search toggle
+  const searchToggle = document.getElementById('searchToggle');
+  const searchBar = document.getElementById('searchBar');
+  
+  if (searchToggle && searchBar) {
+    searchToggle.addEventListener('click', () => {
+      searchBar.style.display = searchBar.style.display === 'none' ? 'block' : 'none';
+    });
+  }
+
+  // Mobile menu toggle
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+  
+  if (mobileMenuToggle && mobileMenu) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.style.display !== 'none';
+      mobileMenu.style.display = isOpen ? 'none' : 'block';
+      menuIcon.style.display = isOpen ? 'block' : 'none';
+      closeIcon.style.display = isOpen ? 'none' : 'block';
+    });
+  }
+
+  // Cart toggle (opens sidebar)
+  const cartToggle = document.getElementById('cartToggle');
+  if (cartToggle) {
+    cartToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.dispatchEvent(new CustomEvent('cart:open'));
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,92 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Ir al contenido"
+    },
+    "meta": {
+      "tags": "Etiquetado \"{{ tags }}\"",
+      "page": "Página {{ page }}"
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "subtext": "Lo sentimos, la página que buscas no existe."
+    },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "page": "Página {{ number }}"
+    },
+    "search": {
+      "search": "Buscar",
+      "placeholder": "Buscar productos..."
+    },
+    "share": {
+      "share": "Compartir",
+      "success_message": "Enlace copiado al portapapeles"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Agregar al carrito",
+      "sold_out": "Agotado",
+      "unavailable": "No disponible",
+      "quantity": "Cantidad",
+      "price": {
+        "from_price_html": "Desde {{ price }}",
+        "regular_price": "Precio regular",
+        "sale_price": "Precio de oferta"
+      },
+      "vendor": "Marca",
+      "media": {
+        "image_available": "La imagen {{ index }} ya está disponible en la vista de galería"
+      }
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menú",
+      "cart_count": {
+        "one": "{{ count }} artículo",
+        "other": "{{ count }} artículos"
+      }
+    },
+    "cart": {
+      "title": "Tu carrito",
+      "empty": "Tu carrito está vacío",
+      "continue_shopping": "Continuar comprando",
+      "subtotal": "Subtotal",
+      "taxes_and_shipping": "Impuestos y envío calculados al finalizar la compra",
+      "checkout": "Finalizar compra",
+      "remove": "Eliminar",
+      "cart_error": "Hubo un error al actualizar tu carrito. Por favor, intenta de nuevo.",
+      "cart_quantity_error_html": "Solo puedes agregar [quantity] de este artículo a tu carrito."
+    },
+    "featured_collection": {
+      "view_all": "Ver todo"
+    },
+    "slideshow": {
+      "pause_slideshow": "Pausar presentación",
+      "play_slideshow": "Reproducir presentación"
+    }
+  },
+  "templates": {
+    "cart": {
+      "cart": "Carrito"
+    },
+    "collection": {
+      "products": "Productos",
+      "empty": "No se encontraron productos",
+      "use_fewer_filters": "Usa menos filtros o elimínalos todos"
+    }
+  },
+  "accessibility": {
+    "refresh_page": "Al seleccionar una opción se actualiza toda la página.",
+    "link_messages": {
+      "new_window": "Se abre en una nueva ventana."
+    }
+  },
+  "localization": {
+    "country_label": "País/región",
+    "update_country": "Actualizar país/región"
+  }
+}

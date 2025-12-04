@@ -1,0 +1,254 @@
+{% comment %}
+  Premium Footer - Hype Spot
+  Converted from React to Shopify Liquid
+{% endcomment %}
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <span class="footer-logo__text">
+            Hype <span class="footer-logo__accent">Spot</span>
+          </span>
+        </div>
+        <p class="footer-description">
+          Tu destino premium para tecnología, moda y accesorios de alta calidad. 
+          Diseño excepcional al alcance de todos.
+        </p>
+        <div class="footer-contact">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          <a href="mailto:hypespotclient@gmail.com">hypespotclient@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-column">
+        <h3 class="footer-column__title">Comprar</h3>
+        <ul class="footer-links">
+          <li><a href="/collections/tecnologia">Tecnología</a></li>
+          <li><a href="/collections/moda">Moda</a></li>
+          <li><a href="/collections/accesorios">Accesorios</a></li>
+          <li><a href="/collections/all">Nuevos productos</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="footer-column">
+        <h3 class="footer-column__title">Ayuda</h3>
+        <ul class="footer-links">
+          <li><a href="/pages/help">Centro de ayuda</a></li>
+          <li><a href="/pages/shipping">Envíos y entregas</a></li>
+          <li><a href="/pages/returns">Devoluciones</a></li>
+          <li><a href="/pages/contact">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        © {{ 'now' | date: '%Y' }} Hype Spot. Todos los derechos reservados.
+      </p>
+      <div class="footer-social">
+        <a href="https://instagram.com/hypespot" target="_blank" rel="noopener noreferrer" class="footer-social__link" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://facebook.com/hypespot" target="_blank" rel="noopener noreferrer" class="footer-social__link" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+        </a>
+        <a href="https://twitter.com/hypespot" target="_blank" rel="noopener noreferrer" class="footer-social__link" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #000000;
+    color: #D1D5DB;
+    padding: 3rem 0;
+  }
+
+  .footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-logo__icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(251, 146, 60, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FB923C;
+  }
+
+  .footer-logo__text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .footer-logo__accent {
+    color: #FB923C;
+  }
+
+  .footer-description {
+    font-size: 0.875rem;
+    color: #9CA3AF;
+    max-width: 28rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .footer-contact {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .footer-contact svg {
+    color: #FB923C;
+  }
+
+  .footer-contact a {
+    color: #D1D5DB;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-contact a:hover {
+    color: #FB923C;
+  }
+
+  .footer-column__title {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links a {
+    color: #D1D5DB;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: #FB923C;
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.875rem;
+    color: #9CA3AF;
+    margin: 0;
+  }
+
+  .footer-social {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-social__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #D1D5DB;
+    transition: all 0.2s ease;
+  }
+
+  .footer-social__link:hover {
+    background: #1F2937;
+    color: #FB923C;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .footer-brand {
+      grid-column: auto;
+    }
+
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

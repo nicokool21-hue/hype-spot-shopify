@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {}
+    },
+    "categories": {
+      "type": "category-grid",
+      "settings": {}
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Productos destacados",
+        "description": "Selección premium de nuestros mejores productos",
+        "collection": "",
+        "products_to_show": 8
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "featured_collection"
+  ]
+}

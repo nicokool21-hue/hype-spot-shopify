@@ -1,0 +1,64 @@
+/* Price component styles */
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.price__regular {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price__sale {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-item {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.price-item--regular {
+  color: rgb(var(--color-base-text));
+}
+
+.price-item--sale {
+  color: rgb(var(--color-accent));
+}
+
+.price-item--regular s {
+  color: rgba(var(--color-base-text), 0.5);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.price--on-sale .price__regular {
+  display: none;
+}
+
+.price--sold-out .price-item {
+  opacity: 0.6;
+}
+
+.unit-price {
+  font-size: 1.3rem;
+  color: rgba(var(--color-base-text), 0.7);
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 749px) {
+  .price-item {
+    font-size: 1.6rem;
+  }
+  
+  .price-item--regular s {
+    font-size: 1.4rem;
+  }
+}
