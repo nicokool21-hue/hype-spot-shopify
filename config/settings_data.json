@@ -1,52 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
-    "colors_text": "#121212",
-    "colors_background": "#FFFFFF",
-    "color_accent": "#FB923C",
-    "type_header_font": "assistant_n4",
-    "type_body_font": "assistant_n4",
-    "body_scale": 100,
-    "heading_scale": 100,
-    "page_width": 1200,
-    "card_style": "standard",
-    "show_vendor": false,
-    "show_rating": false,
-    "social_facebook_link": "",
-    "social_instagram_link": "",
-    "social_twitter_link": "",
     "sections": {
       "header": {
         "type": "header",
-        "settings": {
-          "menu": "main-menu",
-          "logo_width": 120
-        }
+        "settings": {}
       },
       "footer": {
         "type": "footer",
-        "blocks": {
-          "footer-0": {
-            "type": "link_list",
-            "settings": {
-              "heading": "Enlaces rápidos",
-              "menu": "footer"
-            }
-          },
-          "footer-1": {
-            "type": "text",
-            "settings": {
-              "heading": "Contáctanos",
-              "subtext": "<p>Email: hypespotclient@gmail.com</p>"
-            }
-          }
-        },
-        "block_order": [
-          "footer-0",
-          "footer-1"
-        ],
-        "settings": {
-          "enable_country_selector": true
-        }
+        "settings": {}
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "776302416715791028": {
+        "type": "shopify://apps/bucks/blocks/app-embed/4f0a9b06-9da4-4a49-b378-2de9d23a3af3",
+        "disabled": false,
+        "settings": {}
+      },
+      "12994730151769110984": {
+        "type": "shopify://apps/atlas-ai-store-builder/blocks/atlas-cart-upsells-app-embed/ff382ac5-0af5-4ea9-a13a-234e8976ca8b",
+        "disabled": false,
+        "settings": {}
       }
     }
   }
